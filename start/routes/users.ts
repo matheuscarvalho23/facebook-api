@@ -1,5 +1,15 @@
 import Route from '@ioc:Adonis/Core/Route';
 
-Route.post('/users/register', 'Users/Register.store');
-Route.get('/users/register/:key', 'Users/Register.show');
-Route.put('/users/register', 'Users/Register.update');
+Route.group(() => {
+    Route.group(() => {
+        Route.post('/', 'Users/Register.store');
+        Route.get('/:key', 'Users/Register.show');
+        Route.put('/', 'Users/Register.update');
+    }).prefix('/register');
+
+    Route.group(() => {
+        Route.post('/', 'Users/ForgotPassword.store');
+        Route.get('/:key', 'Users/ForgotPassword.show');
+        Route.put('/', 'Users/ForgotPassword.update');
+    }).prefix('/forgot-password');
+}).prefix('/users');
