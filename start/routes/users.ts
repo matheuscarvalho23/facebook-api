@@ -4,6 +4,8 @@ Route.group(() => {
     Route.get('/', 'Users/Main.show').middleware('auth');
     Route.put('/', 'Users/Main.update').middleware('auth');
 
+    Route.get('/search', 'Users/Main.index').middleware('auth');
+
     Route.group(() => {
         Route.post('/', 'Users/Register.store');
         Route.get('/:key', 'Users/Register.show');
