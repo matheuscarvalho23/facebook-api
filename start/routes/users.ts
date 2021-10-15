@@ -15,4 +15,11 @@ Route.group(() => {
         Route.get('/:key', 'Users/ForgotPassword.show');
         Route.put('/', 'Users/ForgotPassword.update');
     }).prefix('/forgot-password');
+
+    Route.group(() => {
+        Route.put('/', 'Users/Avatar.update');
+        Route.delete('/', 'Users/Avatar.destroy');
+    })
+        .prefix('/avatar')
+        .middleware('auth');
 }).prefix('/users');
