@@ -12,5 +12,7 @@ export default class StoreValidator {
         redirectUrl: schema.string({ trim: true }),
     });
 
+    public cacheKey = this.ctx.routeKey;
+
     public messages = {};
 }
