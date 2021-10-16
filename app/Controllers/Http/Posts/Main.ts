@@ -13,9 +13,19 @@ export default class PostsController {
         await user.load('posts', (query) => {
             query.orderBy('id', 'desc');
             query.preload('media');
+            query.withCount('comments');
+
             query.preload('user', (query) => {
                 query.select(['id', 'name', 'username']);
                 query.preload('avatar');
+            });
+
+            query.preload('comments', (query) => {
+                query.select(['userId', 'id', 'content', 'createdAt']);
+                query.preload('user', (query) => {
+                    query.select(['id', 'name', 'username']);
+                    query.preload('avatar');
+                });
             });
         });
 
