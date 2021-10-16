@@ -9,11 +9,8 @@ export default class Post extends BaseModel {
     @column()
     public description: string;
 
-    @column.dateTime({ autoCreate: true })
-    public createdAt: DateTime;
-
-    @column.dateTime({ autoCreate: true, autoUpdate: true })
-    public updatedAt: DateTime;
+    @column({ serializeAs: null })
+    public userId: number;
 
     @belongsTo(() => User)
     public user: BelongsTo<typeof User>;
@@ -23,4 +20,10 @@ export default class Post extends BaseModel {
         onQuery: (query) => query.where({ fileCategory: 'post' }),
     })
     public media: HasOne<typeof File>;
+
+    @column.dateTime({ autoCreate: true })
+    public createdAt: DateTime;
+
+    @column.dateTime({ autoCreate: true, autoUpdate: true })
+    public updatedAt: DateTime;
 }
