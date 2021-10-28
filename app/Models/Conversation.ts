@@ -14,9 +14,13 @@ export default class Conversation extends BaseModel {
     @hasMany(() => Message)
     public messages: HasMany<typeof Message>;
 
-    @belongsTo(() => User, { foreignKey: 'userIdOne' })
-    public userOne: BelongsTo<typeof User>;
+    @belongsTo(() => User, {
+        foreignKey: 'userIdOne',
+    })
+    public user_id_one: BelongsTo<typeof User>;
 
-    @belongsTo(() => User, { foreignKey: 'userIdTwo' })
-    public userTwo: BelongsTo<typeof User>;
+    @belongsTo(() => User, {
+        foreignKey: 'userIdTwo',
+    })
+    public user_id_two: BelongsTo<typeof User>;
 }
